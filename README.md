@@ -13,6 +13,6 @@ Webpage on Raspberry Pi3 to monitor temperatures and a camera view of growing ch
 2. install django:
     *   pip install django
 3. Unpack files into a directory
-    *   git clone https://github.com/nelzon1/webgarden
+    *   git clone https://github.com/nelzon1/webgarden.git
 4. run webserver:
     *   python manage.py runserver
