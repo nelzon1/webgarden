@@ -1,5 +1,6 @@
 import temperature as temp
 import time
+import os
 
 while True:
     now = time.localtime()
@@ -7,7 +8,7 @@ while True:
     datestamp = str(now[0]) + '-' + str(now[1]) + '-' + str(now[2])
     curTemp = temp.read_temp()
     try:
-        with open(datestamp + '.dat','a') as data:
+        with open(os.path.join("tempdata", datestamp + '.dat','a')) as data:
             data.write(curTemp[0] + ',' + curTemp[1] + ',' + timestr + '\n')
     except:
         print('File write error')
