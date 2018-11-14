@@ -12,6 +12,6 @@ def snap(filename, text):
         camera.capture(filename)
         camera.stop_preview()
     except:
-        return -1
+        raise
 
     return 1
