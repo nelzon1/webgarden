@@ -4,8 +4,8 @@ import os
 
 while True:
     now = time.localtime()
-    timestr = str(now[0]) + '-' + str(now[1]) + '-' + str(now[2]) + ' ' + str(now[3]) + ':' + str(now[4])
-    datestamp = str(now[0]) + '-' + str(now[1]) + '-' + str(now[2])
+    timestr = str(now[0]) + '-' + str(now[1]).zfill(2) + '-' + str(now[2]).zfill(2) + ' ' + str(now[3]).zfill(2) + ':' + str(now[4]).zfill(2)
+    datestamp = str(now[0]) + '-' + str(now[1]).zfill(2) + '-' + str(now[2]).zfill(2)
     curTemp = temp.read_temp()
     #import pdb; pdb.set_trace()
     try:

@@ -7,7 +7,7 @@ def getTemp():
     #import pdb; pdb.set_trace()
     filename = os.path.join(os.getcwd(),"proc","tempdata","")
     now = time.localtime()
-    timestr = str(now[0]) + '-' + str(now[1]) + '-' + str(now[2])
+    timestr = str(now[0]) + '-' + str(now[1]).zfill(2) + '-' + str(now[2]).zfill(2)
     filename += timestr + ".dat"
     temps = []
     data_points = 20
@@ -26,7 +26,7 @@ def getTemp():
 def getImagePath():
     
     now = time.localtime()
-    timestr = str(now[0]) + '-' + str(now[1]) + '-' + str(now[2])
+    timestr = str(now[0]) + '-' + str(now[1]).zfill(2) + '-' + str(now[2]).zfill(2)
     filename = os.path.join(os.getcwd(),"dash","static","dash","images", timestr )
     try:
         files = os.listdir(filename)
