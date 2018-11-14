@@ -11,7 +11,7 @@ while True:
     try:
         with open(os.path.join("tempdata", datestamp + '.dat'),'a') as data:
             datum = (str(curTemp[0]) + ',' + str(curTemp[1]) + ',' + timestr + '\n')
-            print(datum)
+            print(datum[:-1])
     except:
         print('File write error')
     time.sleep(15)
