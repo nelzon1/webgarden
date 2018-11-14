@@ -10,7 +10,7 @@ def snap(filename, text):
     camera.annotate_text = text
     camera.start_preview()
     sleep(2)
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     try:
         camera.capture(filename)
     except IOError:
