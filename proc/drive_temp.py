@@ -1,10 +1,10 @@
-import temperature as temp:
+import temperature as temp
 import time
 
 while True:
     now = time.localtime()
-    timestr = now[0] + '-' + now[1] + '-' + now[2] + ' ' + now[3] + ':' + now[4]
-    datestamp = now[0] + '-' + now[1] + '-' + now[2]
+    timestr = str(now[0]) + '-' + str(now[1]) + '-' + str(now[2]) + ' ' + str(now[3]) + ':' + str(now[4])
+    datestamp = str(now[0]) + '-' + str(now[1]) + '-' + str(now[2])
     curTemp = temp.read_temp()
     try:
         with open(datestamp + '.dat','a') as data:
