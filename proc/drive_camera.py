@@ -24,6 +24,7 @@ def writeImagePath(image_path, timeStr):
     sql = "INSERT INTO IMAGES VALUES (%s,%s)"
     val = (image_path,timeStr)
     mycursor.execute(sql,val)
+    mycursor.commit()
 
 while True:
     now = time.localtime()

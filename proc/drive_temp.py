@@ -23,6 +23,7 @@ def writeTemp(tempData, timeStr):
     sql = "INSERT INTO TEMPERATURE VALUES (%s,%s)"
     val = (tempData,timeStr)
     mycursor.execute(sql,val)
+    mycursor.commit()
 
 while True:
     now = time.localtime()
