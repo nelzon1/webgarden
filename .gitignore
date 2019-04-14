@@ -1,0 +1,3 @@
+#ignore live data
+/proc/tempdata/
+/dash/static/dash/images/

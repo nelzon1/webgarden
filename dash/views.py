@@ -50,4 +50,4 @@ def index(request):
 
 def test(request):
     #import pdb; pdb.set_trace()
-    return HttpResponse(" ".join(getTemp()) + "\t" + getImagePath())
+    return HttpResponse(" ".join(getTemp()[0]) + "\t" + getImagePath())
