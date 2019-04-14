@@ -48,7 +48,7 @@ def getTemp():
 def getImagePath():
     
     sql="""SELECT path FROM images ORDER by datetime desc LIMIT 1;"""
-    filename = mycursor.execute().fetchall()
+    filename = mycursor.execute(sql).fetchall()
 
     #old method without db
     """
