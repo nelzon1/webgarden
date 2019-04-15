@@ -7,7 +7,7 @@ import mysql.connector
 
 global cred
 
-with open('../proc/dbinfo.json','r') as json_file:
+with open('proc/dbinfo.json','r') as json_file:
     cred = json.load(json_file)
 
 mydb = mysql.connector.connect(
