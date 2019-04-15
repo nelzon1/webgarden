@@ -22,53 +22,31 @@ mycursor = mydb.cursor()
 
 def getTemp():
     #import pdb; pdb.set_trace()
-    sql = """SELECT temperature, datetime FROM temperature LIMIT 20;"""
-    temps = mycursor.execute(sql).fetchall()
-
-    #old method without db
-    """
-    filename = os.path.join(os.getcwd(),"proc","tempdata","")
-    now = time.localtime()
-    timestr = str(now[0]) + '-' + str(now[1]).zfill(2) + '-' + str(now[2]).zfill(2)
-    filename += timestr + ".dat"
-    temps = []
-    data_points = 20
-    try:
-        with open(filename,'r') as data:
-            raw = [ list(x.split(',')) for x in  data.read().splitlines() ]
-            if len(raw) < data_points:
-                temps = raw
-            else:
-                temps = raw[-data_points:]
-    except FileNotFoundError:
-        print('File not found: ' + filename)
-    """
+    sql = """SELECT temperature + 0E0, DATE_FORMAT(datetime,"%H:%i:%s") FROM temperature LIMIT 20;"""
+    mycursor.execute(sql)
+    temps = mycursor.fetchall()
+    temps = list(zip(*temps))
     return temps
 
 def getImagePath():
     
-    sql="""SELECT path FROM images ORDER by datetime desc LIMIT 1;"""
-    filename = mycursor.execute(sql).fetchall()
+    sql="""SELECT SUBSTRING(path,13,65) FROM images ORDER by id desc LIMIT 1;"""
+    mycursor.execute(sql)
+    filename = mycursor.fetchall()[0][0]
 
-    #old method without db
-    """
-    now = time.localtime()
-    timestr = str(now[0]) + '-' + str(now[1]).zfill(2) + '-' + str(now[2]).zfill(2)
-    filename = os.path.join(os.getcwd(),"dash","static","dash","images", timestr )
-    try:
-        files = os.listdir(filename)
-        files = sorted(files)
-        filename = os.path.join("dash","images",timestr,files[-1])
-    except FileNotFoundError:
-        print("Directory not found: " + filename)   
-    """
     return filename
 
 
 # Create your views here.
 def home(request):
+    tempData = getTemp()
+    temps = "[" + ",".join([str(x) for x in tempData[0]]) + "]"
+    times = '["' + '","'.join(tempData[1]) + '"]'
     context = {
-        'title': 'WebGarden'
+        'title': 'WebGarden',
+        'imagePath': getImagePath(),
+        'temps':temps,
+        'times':times
     }
     #import pdb; pdb.set_trace()
     return render(request, 'dash/home.htm', context)
