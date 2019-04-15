@@ -21,7 +21,7 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 
 def writeImagePath(image_path, timeStr):
-    sql = "INSERT INTO images VALUES (%s,%s)"
+    sql = "INSERT INTO images (path,datetime) VALUES (%s,%s)"
     val = (image_path,timeStr)
     mycursor.execute(sql,val)
     mydb.commit()

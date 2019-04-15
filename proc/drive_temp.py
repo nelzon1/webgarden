@@ -20,7 +20,7 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 
 def writeTemp(tempData, timeStr):
-    sql = "INSERT INTO temperature VALUES (%s,%s)"
+    sql = "INSERT INTO temperature (temperature,datetime) VALUES (%s,%s)"
     val = (tempData,timeStr)
     mycursor.execute(sql,val)
     mydb.commit()
