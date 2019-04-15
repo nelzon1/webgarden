@@ -14,13 +14,13 @@ mydb = mysql.connector.connect(
         user=cred['connection']['user'],
         passwd=cred['connection']['pwd'],
         database=cred['connection']['database'],
-        port=cred['connection']['port']
+        #port=cred['connection']['port']
         )
 
 mycursor = mydb.cursor()
 
 def writeTemp(tempData, timeStr):
-    sql = "INSERT INTO TEMPERATURE VALUES (%s,%s)"
+    sql = "INSERT INTO temperature VALUES (%s,%s)"
     val = (tempData,timeStr)
     mycursor.execute(sql,val)
     mycursor.commit()

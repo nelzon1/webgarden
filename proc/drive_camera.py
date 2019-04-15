@@ -15,13 +15,13 @@ mydb = mysql.connector.connect(
         user=cred['connection']['user'],
         passwd=cred['connection']['pwd'],
         database=cred['connection']['database'],
-        port=cred['connection']['port']
+        #port=cred['connection']['port']
         )
 
 mycursor = mydb.cursor()
 
 def writeImagePath(image_path, timeStr):
-    sql = "INSERT INTO IMAGES VALUES (%s,%s)"
+    sql = "INSERT INTO images VALUES (%s,%s)"
     val = (image_path,timeStr)
     mycursor.execute(sql,val)
     mycursor.commit()
