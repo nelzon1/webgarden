@@ -30,7 +30,7 @@ def getTemp():
 
 def getImagePath():
     
-    sql="""SELECT SUBSTRING(path,""" + str(cred['offset']) + """,65) FROM images ORDER by id desc LIMIT 1;"""
+    sql="""SELECT SUBSTRING(path,""" + str(cred['connection']['offset']) + """,65) FROM images ORDER by id desc LIMIT 1;"""
     mycursor.execute(sql)
     filename = mycursor.fetchall()[0][0]
 
