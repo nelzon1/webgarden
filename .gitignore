@@ -2,3 +2,6 @@
 /proc/tempdata/
 /dash/static/dash/images/
 /proc/dbinfo.json
+/dash/__pycache__/
+/webgarden/__pycache__/
+*/__pycache__/*
