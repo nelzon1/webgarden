@@ -22,7 +22,7 @@ mycursor = mydb.cursor()
 
 def getTemp():
     #import pdb; pdb.set_trace()
-    sql = """SELECT temperature + 0E0, DATE_FORMAT(datetime,"%H:%i:%s") FROM temperature LIMIT 20;"""
+    sql = """SELECT temperature + 0E0, DATE_FORMAT(datetime,"%H:%i:%s") FROM temperature order by id desc LIMIT 20;"""
     mycursor.execute(sql)
     temps = mycursor.fetchall()
     temps = list(zip(*temps))
@@ -30,7 +30,7 @@ def getTemp():
 
 def getImagePath():
     
-    sql="""SELECT SUBSTRING(path,13,65) FROM images ORDER by id desc LIMIT 1;"""
+    sql="""SELECT SUBSTRING(path,""" + str(cred['offset']) + """,65) FROM images ORDER by id desc LIMIT 1;"""
     mycursor.execute(sql)
     filename = mycursor.fetchall()[0][0]
 
