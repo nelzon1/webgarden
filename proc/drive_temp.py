@@ -23,13 +23,13 @@ def writeTemp(tempData, timeStr):
     sql = "INSERT INTO temperature VALUES (%s,%s)"
     val = (tempData,timeStr)
     mycursor.execute(sql,val)
-    mycursor.commit()
+    mydb.commit()
 
 while True:
     now = time.localtime()
     timeStr = str(now[0]) + '-' + str(now[1]).zfill(2) + '-' + str(now[2]).zfill(2) + ' ' + str(now[3]).zfill(2) + ':' + str(now[4]).zfill(2) + ':' + str(now[5]).zfill(2)
     datestamp = str(now[0]) +  '-' + str(now[1]).zfill(2) +  '-' + str(now[2]).zfill(2)
-    curTemp = temp.read_temp()
+    curTemp = temp.read_temp()[0]
     #import pdb; pdb.set_trace()
     writeTemp(curTemp, timeStr)
     try:
