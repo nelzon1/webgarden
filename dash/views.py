@@ -23,7 +23,7 @@ mycursor = mydb.cursor()
 
 def getTemp():
     #import pdb; pdb.set_trace()
-    sql = """SELECT temperature + 0E0, DATE_FORMAT(datetime,"%H:%i:%s") FROM temperature order by id desc LIMIT 20;"""
+    sql = """SELECT temperature + 0E0, DATE_FORMAT(datetime,"%H:%i") FROM temperature order by id desc LIMIT 120;"""
     mycursor.execute(sql)
     temps = mycursor.fetchall()
     mydb.commit()
