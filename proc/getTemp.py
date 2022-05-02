@@ -8,7 +8,7 @@ dbconn = sqlite3.connect('/home/piserver/dev/webgarden/appDB.sqlite3')
 mycursor = dbconn.cursor()
 
 def writeTemp(tempData, timeStr):
-    sql = "INSERT INTO Temperature (Temperature,Datetime) VALUES (?,?)"
+    sql = "INSERT INTO Temperature (Temperature,Datetime) VALUES (?,'?')"
     val = (tempData,timeStr)
     mycursor.execute(sql,val)
 
