@@ -2,22 +2,10 @@ import temperature as temp
 import time
 import os
 import json
-import mysql.connector
+import sqlite3
 
-global cred
-
-with open('dbinfo.json','r') as json_file:
-    cred = json.load(json_file)
-
-mydb = mysql.connector.connect(
-        host=cred['connection']['host'],
-        user=cred['connection']['user'],
-        passwd=cred['connection']['pwd'],
-        database=cred['connection']['database'],
-        #port=cred['connection']['port']
-        )
-
-mycursor = mydb.cursor()
+dbconn = sqlite3.connect('\dev\jake\webgarden\appDB.sqlite3')
+mycursor = dbconn.cursor()
 
 def writeTemp(tempData, timeStr):
     sql = "INSERT INTO temperature (temperature,datetime) VALUES (%s,%s)"
