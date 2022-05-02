@@ -2,11 +2,11 @@ import temperature as temp
 import time
 import os
 import sqlite3
-
+import json
 
 creds = {}
 with (open('dbinfo.json','r') as options):
-    creds = json.loads(options)
+    creds = json.loads(options.read())
 
 dbconn = sqlite3.connect(creds['dbPath'])
 dbcurr = dbconn.cursor()
