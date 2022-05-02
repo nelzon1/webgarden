@@ -31,3 +31,5 @@ while True:
     except:
         print('Database write error')
     time.sleep(60)
+
+dbconn.close()
