@@ -3,7 +3,7 @@ Webpage on Raspberry Pi3 to monitor temperatures and a camera view of growing ch
 
 ## Requirements: 
 * Python3.5+
-* Django2.1+
+* Django4.0.4+
 * Raspberry Pi 3
 * Temperature sensor: DS18B20 [(wiring diagram)](https://www.14core.com/wp-content/uploads/2015/11/Single-DS18B20-Temperature-Sensor-Wiring-diagram-Wired.jpg)
 * Camera: Standard camera for Raspberry Pi, 2.0MP+
@@ -24,4 +24,4 @@ Webpage on Raspberry Pi3 to monitor temperatures and a camera view of growing ch
 ## Dockerfile
 docker build -t webgarden .
 docker run -it --rm --name webgarden-server webgarden
-docker run -it --rm --name webgarden-server webgarden -p 8699:8000
+docker run -it --rm --name webgarden-server webgarden -p 8600:8000
