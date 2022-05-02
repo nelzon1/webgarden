@@ -3,7 +3,12 @@ import time
 import os
 import sqlite3
 
-dbconn = sqlite3.connect('/home/piserver/dev/webgarden/appDB.sqlite3')
+
+creds = {}
+with (open('dbinfo.json','r') as options):
+    creds = json.loads(options)
+
+dbconn = sqlite3.connect(creds['dbPath'])
 dbcurr = dbconn.cursor()
 
 def writeTemp(tempData, timeStr):
