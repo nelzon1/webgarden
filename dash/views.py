@@ -6,7 +6,7 @@ import time
 import json
 import sqlite3
 
-dbconn = sqlite3.connect('home\piserver\dev\jake\webgarden\appDB.sqlite3')
+dbconn = sqlite3.connect('/home/piserver/dev/webgarden/appDB.sqlite3')
 mycursor = dbconn.cursor()
 
 def getTemp():
