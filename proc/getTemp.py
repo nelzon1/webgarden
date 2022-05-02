@@ -18,6 +18,6 @@ curTemp = temp.read_temp()[0]
 #import pdb; pdb.set_trace()
 print("Current temperature: ", curTemp, timeStr)
 writeTemp(curTemp, timeStr)
-dbcurr.commit()
+dbconn.commit()
 dbconn.close()
 
