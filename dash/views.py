@@ -7,26 +7,28 @@ import json
 import sqlite3
 
 creds = {}
-with (open('../proc/dbinfo.json','r') as options):
-    creds = json.loads(options)
+with (open('./proc/dbinfo.json','r') as options):
+    creds = json.loads(options.read())
 
-dbconn = sqlite3.connect(creds['dbPath'])
-mycursor = dbconn.cursor()
+
 
 def getTemp():
+    dbconn = sqlite3.connect(creds['dbPath'])
+    mycursor = dbconn.cursor()
     #import pdb; pdb.set_trace()
-    sql = """SELECT temperature + 0E0, DATE_FORMAT(datetime,"%H:%i") FROM Temperature order by id desc LIMIT 120;"""
-    mycursor.execute(sql)
-    temps = mycursor.fetchall()
-    mydb.commit()
+    sql = """SELECT temperature, datetime FROM Temperature order by TemperatureID desc LIMIT 120;"""
+    temps = list(mycursor.execute(sql))
     #temps = list(zip(*temps))
+    dbconn.close()
     return temps
 
 def getImagePath():
+    dbconn = sqlite3.connect(creds['dbPath'])
+    mycursor = dbconn.cursor()
     sql="""SELECT SUBSTRING(path,""" + str(cred['connection']['offset']) + """,65) FROM images ORDER by id desc LIMIT 1;"""
     mycursor.execute(sql)
     filename = mycursor.fetchall()[0][0]
-    mydb.commit()
+    dbconn.close()
     return filename
 
 
@@ -44,14 +46,15 @@ def index(request):
 
 def test(request):
     #import pdb; pdb.set_trace()
-    return HttpResponse(" ".join(getTemp()[0]) + "\t" + getImagePath())
+    #return HttpResponse(" ".join(getTemp()[0]) + "\t" + getImagePath())
+    return HttpResponse("\n".join(str(getTemp()[0])))
 
 def update(request):
     #import pdb; pdb.set_trace()
     data = getTemp()
     jsonData = {"data":[]}
     for datum in data:
-        jsonData["data"].append( {"temp":datum[0],"time":datum[1]} )
+        jsonData["data"].append( {"temp":datum[0],"time":datum[1][-8:-3]} )
 
     return HttpResponse(json.dumps(jsonData))
 
