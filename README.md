@@ -19,3 +19,9 @@ Webpage on Raspberry Pi3 to monitor temperatures and a camera view of growing ch
 4. run webserver:
     *   python manage.py runserver
     *   python manage.py runserver 0.0.0.0:8000
+
+
+## Dockerfile
+docker build -t webgarden .
+docker run -it --rm --name webgarden-server webgarden
+docker run -it --rm --name webgarden-server webgarden -p 8699:8000

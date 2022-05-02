@@ -4,8 +4,7 @@ from django.http import HttpResponse
 import os
 import time
 import json
-import mysql.connector
-
+'''
 global cred
 
 with open('proc/dbinfo.json','r') as json_file:
@@ -20,6 +19,7 @@ mydb = mysql.connector.connect(
         )
 
 mycursor = mydb.cursor()
+'''
 
 def getTemp():
     #import pdb; pdb.set_trace()
@@ -42,7 +42,7 @@ def getImagePath():
 def home(request):
     context = {
         'title': 'WebGarden',
-        'imagePath': getImagePath()
+        'imagePath': 'blah' #getImagePath()
     }
     #import pdb; pdb.set_trace()
     return render(request, 'dash/home.htm', context)
@@ -62,3 +62,9 @@ def update(request):
         jsonData["data"].append( {"temp":datum[0],"time":datum[1]} )
 
     return HttpResponse(json.dumps(jsonData))
+
+def status(request):
+    return HttpResponse("status page")
+
+def schedule(request):
+    return HttpResponse("schedule page")
