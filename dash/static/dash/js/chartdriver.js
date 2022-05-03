@@ -108,6 +108,7 @@ function loadTempData() {
 
 document.getElementById('buttonRefresh').addEventListener('click', function(){
 	loadTempData();
+  getLatestImage();
 });
 
 window.onload = function() {
