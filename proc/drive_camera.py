@@ -3,28 +3,19 @@ import time
 import os
 
 import json
-import mysql.connector
 
-global cred
+creds = {}
+with (open('dbinfo.json','r') as options):
+    creds = json.loads(options)
 
-with open('dbinfo.json','r') as json_file:
-    cred = json.load(json_file)
-
-mydb = mysql.connector.connect(
-        host=cred['connection']['host'],
-        user=cred['connection']['user'],
-        passwd=cred['connection']['pwd'],
-        database=cred['connection']['database'],
-        #port=cred['connection']['port']
-        )
-
-mycursor = mydb.cursor()
+dbconn = sqlite3.connect(creds['dbPath'])
+dbcurr = dbconn.cursor()
 
 def writeImagePath(image_path, timeStr):
     sql = "INSERT INTO images (path,datetime) VALUES (%s,%s)"
     val = (image_path,timeStr)
-    mycursor.execute(sql,val)
-    mydb.commit()
+    dbcurr.execute(sql,val)
+    dbconn.commit()
 
 while True:
     now = time.localtime()

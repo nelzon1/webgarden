@@ -59,7 +59,28 @@ function updateData() {
 	config.data.datasets[0].data = temps;
 	config.data.labels = times;
 	
+
 }
+function getLatestImage() {
+  var xmlhttp = new XMLHttpRequest();
+
+  xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+      if (xmlhttp.status == 200) {
+    document.getElementById("latestImage").src = xmlhttp.responseURL;
+      }
+      else if (xmlhttp.status == 400) {
+          alert('There was an error 400');
+      }
+      else {
+          //alert('something else other than 200 was returned');
+      }
+      }
+  };
+
+  xmlhttp.open("GET", "/dash/getImage", true);
+  xmlhttp.send();
+};
 
 function loadTempData() {
     var xmlhttp = new XMLHttpRequest();
@@ -91,8 +112,10 @@ document.getElementById('buttonRefresh').addEventListener('click', function(){
 
 window.onload = function() {
 	loadTempData();
+  getLatestImage();
     var ctx = document.getElementById('canvas').getContext('2d');
 	window.myLine = new Chart(ctx, config);
   };
 
 setInterval(loadTempData, 60000);
+setInterval(getLatestImage, 60000 * 5);

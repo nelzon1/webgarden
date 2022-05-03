@@ -63,3 +63,16 @@ def status(request):
 
 def schedule(request):
     return HttpResponse("schedule page")
+
+def getImage(request):
+    #valid_image = getImagePath()
+    valid_image = './proc/LatestImage.jpg'
+    try:
+        with open(valid_image, "rb") as f:
+            return HttpResponse(f.read(), content_type="image/jpeg")
+    except IOError:
+        red = Image.new('RGBA', (1, 1), (255,0,0,0))
+        response = HttpResponse(content_type="image/jpeg")
+        red.save(response, "JPEG")
+        return response
+ 
