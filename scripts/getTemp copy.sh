@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# getTemp.sh
+# getImage.sh
 cd /home/piserver/dev/webgarden/proc
-python ./getTemp.py
+python ./getImage.py
