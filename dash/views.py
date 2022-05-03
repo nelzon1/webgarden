@@ -16,7 +16,7 @@ def getTemp():
     dbconn = sqlite3.connect(creds['dbPath'])
     mycursor = dbconn.cursor()
     #import pdb; pdb.set_trace()
-    sql = """SELECT temperature, datetime FROM Temperature order by TemperatureID desc LIMIT 120;"""
+    sql = """SELECT temperature, datetime FROM Temperature order by TemperatureID desc LIMIT 360;"""
     temps = list(mycursor.execute(sql))
     #temps = list(zip(*temps))
     dbconn.close()
