@@ -1,5 +1,6 @@
 #ignore live data
 /proc/tempdata/
+/proc/imgArchive/
 appDB.sqlite3
 /dash/static/dash/images/
 /proc/dbinfo.json
