@@ -3,7 +3,7 @@
 # Backup latestImage
  
 ## Get current date ##
-_now=$(date +"%m_%d_%Y")
+_now=$(date +"%m_%d_%Y_%H")
  
 ## Appending a current date from a $_now to a filename stored in $_file ##
 _file="/home/piserver/dev/webgarden/proc/imgArchive/img_$_now.jpg"
