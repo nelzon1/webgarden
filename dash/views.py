@@ -21,7 +21,7 @@ def getTemp(params):
         elif int(params['days'][0]) == 0:
             limit = 360
         else:
-            limit = int(params['days'][0]) * 60 * 12
+            limit = int(params['days'][0]) * 60 * 24
     else:
         limit = 360
     dbconn = sqlite3.connect(creds['dbPath'])
