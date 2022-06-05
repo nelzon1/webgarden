@@ -145,9 +145,6 @@ document.getElementById('buttonRefreshAll').addEventListener('click', function()
   window.sessionStorage.days = -1;
 });
 
-
-
-
 window.onload = function() {
   window.sessionStorage.days = 0;
 	loadTempData({days: window.sessionStorage.days});
@@ -156,5 +153,10 @@ window.onload = function() {
 	window.myLine = new Chart(ctx, config);
   };
 
-setInterval(loadTempData, 60000, {days: window.sessionStorage.days});
+function refreshData(){
+  loadTempData({days: window.sessionStorage.days})
+}
+
+setInterval(refreshData, 60000);
+
 setInterval(getLatestImage, 60000 * 5);
