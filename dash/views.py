@@ -12,11 +12,24 @@ with (open('./proc/dbinfo.json','r') as options):
 
 
 
-def getTemp():
+def getTemp(params):
+    # temp every minute, days = 12 * 60 minutes
+    #import pdb; pdb.set_trace()
+    if 'days' in params:
+        if int(params['days'][0]) == -1:
+            limit = 1000000
+        elif int(params['days'][0]) == 0:
+            limit = 360
+        else:
+            limit = int(params['days'][0]) * 60 * 12
+    else:
+        limit = 360
     dbconn = sqlite3.connect(creds['dbPath'])
     mycursor = dbconn.cursor()
-    #import pdb; pdb.set_trace()
-    sql = """SELECT temperature, datetime FROM Temperature order by TemperatureID desc LIMIT 360;"""
+    #
+    sql = """SELECT temperature, datetime FROM Temperature order by TemperatureID desc LIMIT {limit};"""
+    sql = sql.format(limit=limit)
+    #print(sql)
     temps = list(mycursor.execute(sql))
     #temps = list(zip(*temps))
     dbconn.close()
@@ -51,7 +64,9 @@ def test(request):
 
 def update(request):
     #import pdb; pdb.set_trace()
-    data = getTemp()
+    params = dict(request.GET)
+    print(request.GET)
+    data = getTemp(params)
     jsonData = {"data":[]}
     for datum in data:
         jsonData["data"].append( {"temp":datum[0],"time":datum[1][-8:-3]} )

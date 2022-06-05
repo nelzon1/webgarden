@@ -9,3 +9,11 @@
     right: 0;
     min-height: 70px;
   }
+
+.chartButtonContainer{
+  display:block;
+}
+
+.button{
+  display:inline-block;
+}
