@@ -1,19 +1,70 @@
-.row.vdivide [class*='col-']:not(:last-child):after {
-    background: #e0e0e0;
-    width: 1px;
-    content: "";
-    display:block;
-    position: absolute;
-    top:0;
-    bottom: 0;
-    right: 0;
-    min-height: 70px;
-  }
+
 
 .chartButtonContainer{
   display:block;
 }
 
+.chartContainer{
+  border: 2px solid;
+  border-radius: 20px;
+  padding: 10px;
+  border-color:slategray;
+}
+
 .button{
   display:inline-block;
+  height: 5rem;
+  width: 13rem;
+  font-size:1.5rem;
+}
+
+.tempContainer{
+  display:block;
+  justify-content: center;
+}
+
+.tempBox{
+  display:block;
+  color: black;
+  border-radius: 10px;
+  border: 2px solid;
+  border-color: black;
+  width: 10rem;
+  height: 10rem;
+  text-align: center;
+  margin: 3rem 0 3rem 0;
+}
+
+.temp{
+  font-size:3rem;
+  line-height:6rem;
+  display:block;
+  display:block;
+  font-weight: bolder;
+}
+
+.TempLabel{
+  font-size:2rem;
+  line-height:3rem;
+  display:block;
+}
+
+.dashBackground{
+  background-color:#cccccc;
+  height: calc(100vh - 56px);
+}
+
+.imgContainer{
+}
+
+#latestImage{
+  width:100%;
+  display: block;
+}
+
+.vertSeparater{
+  min-height: 100px;
+  display: inline-block;
+  background: #BBBBBB;
+  width: 2px;
 }

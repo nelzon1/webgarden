@@ -45,20 +45,32 @@ var config = {
     }
   };
 
+function getMaxTemp(temperatures){
+  let curMax = 0;
+  temperatures.forEach(temp => {
+    if (Number(temp) > curMax) {
+      curMax = Number(temp);
+    }
+  });
+  return curMax;
+}
+
 function updateData() {
 	
 	var tempData = JSON.parse(document.getElementById('temps').innerText);
 	var temps = [];
 	var times = [];
 	tempData.data.forEach(function(row){
-		temps.push(row.temp)
+		temps.push(Number(row.temp))
 		times.push(row.time)
 	})
 	temps.reverse();
 	times.reverse();
 	config.data.datasets[0].data = temps;
 	config.data.labels = times;
-	
+	window.sessionStorage.curTemp = Number(temps.slice(-1)[0]).toFixed(2);
+  window.sessionStorage.avgTemp = Number(temps.reduce( (a,b) => a + b, 0) / temps.length).toFixed(2);
+  window.sessionStorage.maxTemp = getMaxTemp(temps).toFixed(2);
 
 }
 function getLatestImage() {
@@ -90,6 +102,9 @@ function loadTempData(config) {
         if (xmlhttp.status == 200) {
 			document.getElementById("temps").innerHTML = xmlhttp.responseText;
 			updateData();
+      document.getElementById("curTemp").innerHTML = window.sessionStorage.curTemp + "&deg";
+      document.getElementById("avgTemp").innerHTML = window.sessionStorage.avgTemp + "&deg";
+      document.getElementById("maxTemp").innerHTML = window.sessionStorage.maxTemp + "&deg";
 			window.myLine.update();
         }
         else if (xmlhttp.status == 400) {
@@ -145,12 +160,19 @@ document.getElementById('buttonRefreshAll').addEventListener('click', function()
   window.sessionStorage.days = -1;
 });
 
+function initialize() {
+  window.sessionStorage.curTemp = 0;
+  window.sessionStorage.avgTemp = 0;
+  window.sessionStorage.maxTemp = 0;
+};
+
 window.onload = function() {
   window.sessionStorage.days = 0;
 	loadTempData({days: window.sessionStorage.days});
   getLatestImage();
     var ctx = document.getElementById('canvas').getContext('2d');
 	window.myLine = new Chart(ctx, config);
+  initialize();
   };
 
 function refreshData(){

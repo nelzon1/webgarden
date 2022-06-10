@@ -65,7 +65,7 @@ def test(request):
 def update(request):
     #import pdb; pdb.set_trace()
     params = dict(request.GET)
-    print(request.GET)
+    #print(request.GET)
     data = getTemp(params)
     jsonData = {"data":[]}
     for datum in data:
