@@ -1,10 +1,12 @@
 #ignore live data
 /proc/tempdata/
 /proc/imgArchive/
+/proc/LatestImage.jpg
 ./appDB.sqlite3
-appDB.sqlite3
 /dash/static/dash/images/
 /proc/dbinfo.json
 /dash/__pycache__/
 /webgarden/__pycache__/
 **/__pycache__/**
+
+appDB.sqlite3
