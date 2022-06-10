@@ -2,6 +2,7 @@
 /proc/tempdata/
 /proc/imgArchive/
 ./appDB.sqlite3
+appDB.sqlite3
 /dash/static/dash/images/
 /proc/dbinfo.json
 /dash/__pycache__/
