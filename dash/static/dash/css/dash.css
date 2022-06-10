@@ -11,6 +11,12 @@
   border-color:slategray;
 }
 
+.chartButtonContainer{
+  display:grid;
+  justify-content: center;
+  grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+}
+
 .button{
   display:inline-block;
   height: 5rem;

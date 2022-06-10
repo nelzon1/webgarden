@@ -1,4 +1,14 @@
-
+const drawBackgroundColor = {
+  id: 'custom_canvas_background_color',
+  beforeDraw: (chart) => {
+    const ctx = chart.canvas.getContext('2d');
+    ctx.save();
+    ctx.globalCompositeOperation = 'destination-over';
+    ctx.fillStyle = 'lightGreen';
+    ctx.fillRect(0, 0, chart.width, chart.height);
+    ctx.restore();
+  }
+};
 
 var config = {
     type: 'line',
@@ -6,17 +16,24 @@ var config = {
       labels: [],
       datasets: [{
         label: 'Temperature',
-        backgroundColor: window.chartColors.red,
-        borderColor: window.chartColors.red,
-        data: [],
-        fill: false,
+        backgroundColor: 'rgb(0, 0, 0)',
+        borderColor: 'rgb(0, 0, 0)',
+        pointRadius: 1,
+        fill: {
+            target: {value: 24.5},
+            above: window.chartColors.orange,   // Area will be red above the origin
+            below: window.chartColors.blue    // And blue below the origin
+        }
       }]
     },
+    //plugins: [drawBackgroundColor],
     options: {
       responsive: true,
-      title: {
-        display: true,
-        text: 'Chart.js Line Chart'
+      plugins: {
+        title: {
+          display: true,
+          text: 'Grow Chamber Temperature'
+        }
       },
       tooltips: {
         mode: 'index',
@@ -27,20 +44,18 @@ var config = {
         intersect: true
       },
       scales: {
-        xAxes: [{
-          display: true,
-          scaleLabel: {
+        x: {
+          title: {
             display: true,
-            labelString: 'Time'
+            text: 'Time'
           }
-        }],
-        yAxes: [{
-          display: true,
-          scaleLabel: {
-            display: true,
-            labelString: 'Temperature (C)'
+        },
+        y: {
+          title: {
+            display:true,
+            text: 'Temperature (C)'
           }
-        }]
+        }
       }
     }
   };
