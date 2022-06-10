@@ -19,7 +19,7 @@
 }
 
 .tempContainer{
-  display:block;
+  display:grid;
   justify-content: center;
 }
 
