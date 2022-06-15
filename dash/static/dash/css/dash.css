@@ -1,76 +1,80 @@
-
-
-.chartButtonContainer{
-  display:block;
+.chartButtonContainer {
+    display: block;
 }
 
-.chartContainer{
-  border: 2px solid;
-  border-radius: 20px;
-  padding: 10px;
-  border-color:slategray;
+.chartContainer {
+    border: 2px solid;
+    border-radius: 20px;
+    padding: 10px;
+    border-color: slategray;
 }
 
-.chartButtonContainer{
-  display:grid;
-  justify-content: center;
-  grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+.chartButtonContainer {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
-.button{
-  display:inline-block;
-  height: 5rem;
-  width: 13rem;
-  font-size:1.5rem;
+.button {
+    display: inline-block;
+    height: 95%;
+    width: 95%;
+    font-size: 1rem;
 }
 
-.tempContainer{
-  display:grid;
-  justify-content: center;
+.tempContainer {
+    display: grid;
+    justify-content: center;
 }
 
-.tempBox{
-  display:block;
-  color: black;
-  border-radius: 10px;
-  border: 2px solid;
-  border-color: black;
-  width: 10rem;
-  height: 10rem;
-  text-align: center;
-  margin: 3rem 0 3rem 0;
+.tempBox {
+    color: black;
+    border-radius: 10px;
+    border: 2px solid;
+    border-color: black;
+    text-align: center;
+    margin: 0px;
+    flex: 0 0 90%;
 }
 
-.temp{
-  font-size:3rem;
-  line-height:6rem;
-  display:block;
-  display:block;
-  font-weight: bolder;
+.temp {
+    font-size: 8vw;
+    line-height: 100%;
+    display: block;
+    display: block;
+    font-weight: bolder;
 }
 
-.TempLabel{
-  font-size:2rem;
-  line-height:3rem;
-  display:block;
+@media (min-width: 976px) {
+    .temp {
+        font-size: 3vw;
+    }
+    .tempBox {
+        margin: 10px;
+    }
 }
 
-.dashBackground{
-  background-color:#cccccc;
-  height: calc(100vh - 56px);
+.TempLabel {
+    font-size: 2vw;
+    line-height: 150%;
+    display: block;
 }
 
-.imgContainer{
+.dashBackground {
+    background-color: #cccccc;
+    height: calc(100vh - 56px);
 }
 
-#latestImage{
-  width:100%;
-  display: block;
+.imgContainer {}
+
+#latestImage {
+    width: 100%;
+    display: block;
 }
 
-.vertSeparater{
-  min-height: 100px;
-  display: inline-block;
-  background: #BBBBBB;
-  width: 2px;
+.vertSeparater {
+    min-height: 100px;
+    display: inline-block;
+    background: #BBBBBB;
+    width: 2px;
 }

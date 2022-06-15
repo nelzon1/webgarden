@@ -52,7 +52,7 @@ def home(request):
         'imagePath': 'blah' #getImagePath()
     }
     #import pdb; pdb.set_trace()
-    return render(request, 'dash/home.htm', context)
+    return render(request, 'dash/home.html', context)
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")

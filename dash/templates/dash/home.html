@@ -59,40 +59,43 @@
   <div class="container-fluid dashBackground">
     <br>
     <div class="row vdivide">
-      <div class="col">
-        <div class="chartContainer">
-        <canvas id="canvas"></canvas>
-        </div>
-        <br>
-        <br>
-        <div class="chartButtonContainer">
-          <button id="buttonRefresh" class="button btn btn-primary">Refresh</button>
-          <button id="buttonRefresh24h" class="button btn btn-primary">Refresh 24 Hours</button>
-          <button id="buttonRefresh2d" class="button btn btn-primary">Refresh 2 Days</button>
-          <button id="buttonRefresh7d" class="button btn btn-primary">Refresh 7 Days</button>
-          <button id="buttonRefreshAll" class="button btn btn-primary">Refresh All</button>
+      <div class="col-lg-8 col-sm-12">
+        <div class="row">
+          <div class="col-lg-10 col-sm-12" >
+            <div class="chartContainer">
+            <canvas id="canvas"></canvas>
+            </div>
+            <br>
+            <br>
+            <div class="chartButtonContainer">
+              <button id="buttonRefresh" class="button btn btn-primary">Refresh</button>
+              <button id="buttonRefresh24h" class="button btn btn-primary">Refresh 24 Hours</button>
+              <button id="buttonRefresh2d" class="button btn btn-primary">Refresh 2 Days</button>
+              <button id="buttonRefresh7d" class="button btn btn-primary">Refresh 7 Days</button>
+              <button id="buttonRefreshAll" class="button btn btn-primary">Refresh All</button>
+            </div>
+          </div>
+          <div class="col-lg-2 col-sm-12">
+            <div class="row tempContainer">
+              <div class="row">
+                <div class="tempBox col-lg-12 col-sm-4">
+                  <div class="TempLabel">Current</div>
+                  <div id="curTemp" class="temp">25.F&deg</div>
+                </div>
+                <div class="tempBox col-lg-12 col-sm-4">
+                  <div class="TempLabel">Average</div>
+                  <div id="avgTemp" class="temp">69.F&deg</div>
+                </div>
+                <div class="tempBox col-lg-12 col-sm-4">
+                  <div class="TempLabel">Maximum</div>
+                  <div id="maxTemp" class="temp">20.F&deg</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class = "vertSeparater"></div>
-      <div class="col col-1">
-        <div class="tempContainer">
-          <div class="spacer" style="display:block; height: 2rem;"></div>
-          <div class="tempBox">
-            <div class="TempLabel">Current</div>
-            <div id="curTemp" class="temp">25.F&deg</div>
-          </div>
-          <div class="tempBox">
-            <div class="TempLabel">Average</div>
-            <div id="avgTemp" class="temp">69.F&deg</div>
-          </div>
-          <div class="tempBox">
-            <div class="TempLabel">Maximum</div>
-            <div id="maxTemp" class="temp">20.F&deg</div>
-          </div>
-        </div>
-      </div>
-      <div class = "vertSeparater"></div>
-      <div class="col col-fill">
+      <div class="col-lg-4 col-sm-12 col-fill">
         <div class="imgContainer">
           <img src="{% static imagePath %}" id="latestImage">
         </div>
