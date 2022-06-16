@@ -49,7 +49,8 @@ def getImagePath():
 def home(request):
     context = {
         'title': 'WebGarden',
-        'imagePath': 'blah' #getImagePath()
+        'imagePath': 'dash/images/qualityPicture.jpg', #getImagePath()
+        'imageList': getImageList()
     }
     #import pdb; pdb.set_trace()
     return render(request, 'dash/home.html', context)
@@ -91,3 +92,9 @@ def getImage(request):
         red.save(response, "JPEG")
         return response
  
+def getImageList():
+    from os.path import isfile, join
+    imagePath = creds['serverPath'] + '/proc/imgArchive/'
+    onlyfiles = [f for f in os.listdir(imagePath) if isfile(join(imagePath, f))]
+    onlyfiles += ['Latest Image','Quality Image']
+    return onlyfiles

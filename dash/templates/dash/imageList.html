@@ -1,0 +1,16 @@
+{% load static %}
+<div class="imageListScrollContainer">
+    <div class="imageListScrollView">
+        <div class="imageListContainer">
+            <ul class="imageList">
+                {% for image in imageList %}
+                    <li class="imageListItem">
+                        <div class="imageListItemBlock">
+                            {{image}}
+                        </div>
+                    </li>
+                {%end for%}
+            </ul>
+        </div>
+    </div>
+</div>
