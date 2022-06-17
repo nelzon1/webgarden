@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
+import json
+
+creds = {}
+with (open('./proc/dbinfo.json','r') as options):
+    creds = json.loads(options.read())
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9lsqlo2^g)kw*trgpk#39i_fsepm&jr^@20=*%)at5_2ll$=f4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(creds['debug'])
 
 ALLOWED_HOSTS = ['*']
 

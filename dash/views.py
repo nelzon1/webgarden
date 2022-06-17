@@ -18,6 +18,8 @@ def getTemp(params):
     if 'days' in params:
         if int(params['days'][0]) == -1:
             limit = 1000000
+        elif int(params['days'][0]) == -2:
+            limit = 1
         elif int(params['days'][0]) == 0:
             limit = 360
         else:
@@ -112,3 +114,10 @@ def fetchImage(request, filename='tester'):
             return HttpResponse(f.read(), content_type="image/jpeg")
     except IOError:
         return HttpResponse("Failed to load file at: " + filepath)
+
+def heartbeat(request, time=0):
+    data = getTemp({"days":[-2]})
+    jsonData = {"data":[]}
+    for datum in data:
+        jsonData["data"].append( {"temp":datum[0],"time":datum[1][-8:-3]} )
+    return HttpResponse(json.dumps(jsonData))

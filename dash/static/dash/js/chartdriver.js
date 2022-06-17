@@ -225,7 +225,31 @@ function fetchImage() {
 }
 
 
-
+function heartbeat() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE) { // XMLHttpRequest.DONE == 4
+            if (xmlhttp.status == 200) {
+                let currentData = JSON.parse(document.getElementById("temps").innerHTML.replace("/", ""));
+                let newData = JSON.parse(xmlhttp.responseText);
+                currentData.data.unshift(newData.data[0]);
+                document.getElementById("temps").innerHTML = JSON.stringify(currentData);
+                updateData();
+                document.getElementById("curTemp").innerHTML = window.sessionStorage.curTemp + "&deg";
+                document.getElementById("avgTemp").innerHTML = window.sessionStorage.avgTemp + "&deg";
+                document.getElementById("maxTemp").innerHTML = window.sessionStorage.maxTemp + "&deg";
+                window.myLine.update();
+            } else if (xmlhttp.status == 400) {
+                alert('There was an error 400');
+            } else {
+                //alert('something else other than 200 was returned');
+            }
+        }
+    };
+    let URL = '/dash/heartbeat/' + Date.now();
+    xmlhttp.open('GET', URL, true);
+    xmlhttp.send();
+}
 
 function initialize() {
     window.sessionStorage.curTemp = 0;
@@ -249,6 +273,6 @@ function refreshData() {
     loadTempData({ days: window.sessionStorage.days })
 }
 
-setInterval(refreshData, 60000);
+setInterval(heartbeat, 60000);
 
 setInterval(getLatestImage, 60000 * 5);
