@@ -198,10 +198,42 @@ document.getElementById('buttonRefreshAll').addEventListener('click', function()
     window.sessionStorage.days = -1;
 });
 
+function fetchImage() {
+    let oldSelected = document.querySelector('.imageList .active');
+    if (oldSelected && !!oldSelected) {
+        oldSelected.classList.remove('active');
+    }
+    this.classList.add('active');
+    filename = this.innerText
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE) { // XMLHttpRequest.DONE == 4
+            if (xmlhttp.status == 200) {
+                document.getElementById("latestImage").src = xmlhttp.responseURL;
+            } else if (xmlhttp.status == 400) {
+                alert('There was an error 400');
+            } else {
+                //alert('something else other than 200 was returned');
+            }
+        }
+    };
+    if (filename === 'Quality Image') {
+        filename = 'quality'
+    }
+    xmlhttp.open("GET", "/dash/fetchImage/" + filename, true);
+    xmlhttp.send();
+}
+
+
+
+
 function initialize() {
     window.sessionStorage.curTemp = 0;
     window.sessionStorage.avgTemp = 0;
     window.sessionStorage.maxTemp = 0;
+    document.querySelectorAll('.imageList li')
+        .forEach(e => e.addEventListener("click", fetchImage));
+    document.querySelector('.imageList :nth-child(2)').classList.add('active');
 };
 
 window.onload = function() {

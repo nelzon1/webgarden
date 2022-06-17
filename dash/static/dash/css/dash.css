@@ -1,3 +1,9 @@
+html,
+body {
+    height: 100%;
+    background-color: #727981;
+}
+
 .chartButtonContainer {
     display: block;
 }
@@ -80,15 +86,16 @@
 }
 
 .dashBackground {
-    background-color: #727981;
     height: calc(100vh - 56px);
 }
 
 .imageListScrollContainer {
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 33.3vw;
+    height: 40vw;
     width: 100%;
+    border-radius: 20px;
+    border: 2px solid corn;
 }
 
 .imageListItemBlock {
@@ -102,11 +109,20 @@
     font-weight: bold;
 }
 
-.imgContainer {}
+.imgContainer {
+    overflow: hidden;
+    max-height: 40vw;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
 
 #latestImage {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
     display: block;
+    border-radius: 20px;
+    border: 2px solid orange;
 }
 
 #qualityImage {

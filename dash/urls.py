@@ -5,5 +5,6 @@ urlpatterns = [
     path('', views.home, name='dash-home'),
     path('test', views.test, name='dash-test'),
     path('update', views.update, name='dash-update'),
-    path('getImage', views.getImage,name='dash-getImage')
+    path('getImage', views.getImage,name='dash-getImage'),
+    path('fetchImage/<str:filename>', views.fetchImage,name='dash-fetchImage')
 ]

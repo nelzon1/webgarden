@@ -61,7 +61,7 @@ def index(request):
 def test(request):
     #import pdb; pdb.set_trace()
     #return HttpResponse(" ".join(getTemp()[0]) + "\t" + getImagePath())
-    return HttpResponse("\n".join(str(getTemp()[0])))
+    return HttpResponse("\n".join(str(getTemp({})[0])))
 
 def update(request):
     #import pdb; pdb.set_trace()
@@ -96,5 +96,19 @@ def getImageList():
     from os.path import isfile, join
     imagePath = creds['serverPath'] + '/proc/imgArchive/'
     onlyfiles = [f for f in os.listdir(imagePath) if isfile(join(imagePath, f))]
-    onlyfiles += ['Latest Image','Quality Image']
+    onlyfiles.sort(reverse=True)
+    onlyfiles = ['Quality Image'] + onlyfiles
     return onlyfiles
+
+def fetchImage(request, filename='tester'):
+    relpath = '/proc/imgArchive/'
+    if filename =='quality':
+        relpath = '/proc/'
+        filename = 'qualityPicture.jpg'
+    filepath = creds['serverPath'] + relpath + filename
+    print(filepath)
+    try:
+        with open(filepath, "rb") as f:
+            return HttpResponse(f.read(), content_type="image/jpeg")
+    except IOError:
+        return HttpResponse("Failed to load file at: " + filepath)
