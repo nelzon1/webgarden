@@ -205,11 +205,13 @@ function fetchImage() {
     }
     this.classList.add('active');
     filename = this.innerText
+    showImgLoadingMsg();
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == XMLHttpRequest.DONE) { // XMLHttpRequest.DONE == 4
             if (xmlhttp.status == 200) {
                 document.getElementById("latestImage").src = xmlhttp.responseURL;
+                hideImgLoadingMsg();
             } else if (xmlhttp.status == 400) {
                 alert('There was an error 400');
             } else {
@@ -258,6 +260,20 @@ function initialize() {
     document.querySelectorAll('.imageList li')
         .forEach(e => e.addEventListener("click", fetchImage));
     document.querySelector('.imageList :nth-child(2)').classList.add('active');
+};
+
+function showImgLoadingMsg() {
+    let loadingWrapper = document.getElementById('loadingWrapper');
+    let spinner = document.getElementById('spinner');
+    loadingWrapper.style.display = '';
+    spinner.style.display = '';
+};
+
+function hideImgLoadingMsg() {
+    let loadingWrapper = document.getElementById('loadingWrapper');
+    let spinner = document.getElementById('spinner');
+    loadingWrapper.style.display = 'none';
+    spinner.style.display = 'none';
 };
 
 window.onload = function() {

@@ -136,3 +136,41 @@ body {
     background: #BBBBBB;
     width: 2px;
 }
+
+
+/** Loading Spinner */
+
+.loadingWrapper {
+    position: absolute;
+    z-index: 2;
+    height: 95%;
+    width: 95%;
+    background: #fff;
+    opacity: 0.3;
+    text-align: center;
+    line-height: 40vw;
+    font-size: 4vw;
+}
+
+.spinner {
+    width: 30vw;
+    height: 30vw;
+    opacity: 0.8;
+    border-radius: 50%;
+    border: 40px solid #fff;
+    border-top: 40px solid cornflowerblue;
+    animation: spin 2s linear infinite;
+    z-index: 5;
+    position: absolute;
+    left: 27%;
+    top: 13%;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
