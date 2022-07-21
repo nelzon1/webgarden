@@ -8,5 +8,7 @@
 /dash/__pycache__/
 /webgarden/__pycache__/
 **/__pycache__/**
+/lcl/
+
 
 appDB.sqlite3
